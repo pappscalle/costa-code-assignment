@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/home";
+import { Button, Container, Typography } from "@mui/material";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,11 +11,13 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <>
-      <div>
-        <h1>The start page</h1>
-      </div>
-      <Link to="/about">About</Link>
-    </>
+    <Container>
+      <Typography variant="h2" gutterBottom>
+        This is the start page
+      </Typography>
+      <Button component={Link} to="/about" variant="outlined" color="primary">
+        About
+      </Button>
+    </Container>
   );
 }

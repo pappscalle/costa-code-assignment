@@ -6,9 +6,15 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
 import type { Route } from "./+types/root";
-import "./app.css";
+
+//import "./app.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import theme from "~/theme";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+
+const cache = createCache({ key: "css", prepend: true });
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +48,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline /> {/* Provides global MUI styles */}
+        <Outlet />
+      </ThemeProvider>
+    </CacheProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

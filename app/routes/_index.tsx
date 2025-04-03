@@ -11,7 +11,9 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <>
-      <div>The start page</div>
+      <div>
+        <h1>The start page</h1>
+      </div>
       <Link to="/about">About</Link>
     </>
   );

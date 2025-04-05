@@ -10,18 +10,30 @@ interface Vehicle {
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const result = await fetch(
+  const vehicleDetails = await fetch(
     `http://localhost:1337/vehicle/info?id=${params.id}`
   );
-  if (!result.ok) {
-    throw new Response("Failed to load data", { status: result.status });
+
+  const vehicleServices = await fetch(
+    `http://localhost:1337/vehicle/services?id=${params.id}`
+  );
+
+  if (!vehicleDetails.ok || !vehicleServices.ok) {
+    throw new Response("Failed to load data", {
+      status: 500,
+    });
   }
 
-  const data: Vehicle = await result.json();
+  const details: Vehicle = await vehicleDetails.json();
+  const services = await vehicleServices.json();
 
+  const combinedData = {
+    details,
+    services,
+  };
   console.log("Data loaded successfully");
-  console.log("Vehicle: ", data);
-  return data;
+  console.log("Vehicle: ", combinedData);
+  return combinedData;
 }
 
 export default function Vehicle() {

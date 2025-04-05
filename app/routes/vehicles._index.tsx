@@ -46,7 +46,7 @@ export default function Vehicles() {
   return (
     <Container>
       <Stack spacing={2}>
-        {vehicles.map(({ id, name }: Vehicle) => (
+        {vehicles.map(({ id, name = "* Unknown *" }: Vehicle) => (
           <Card key={id} sx={{ maxWidth: 450 }}>
             <Link to={`/vehicles/${id}`}>
               <CardActionArea>

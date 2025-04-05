@@ -1,87 +1,53 @@
-# Welcome to React Router!
+# COSTA: Code Assignment
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Assignment
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+The main objective is to build a web application that consists of three pages:
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- A landing page that shows available vehicles
+- An Infomation Overview page that shows detailed information about a vehicle and its active services
+- A Service Overview page that shows a list of all services with details. The list shooule be possible to filter accoding to service status.
 
 ## Getting Started
 
-### Installation
+Checkout this repo
 
-Install the dependencies:
+### Install dependencies
 
-```bash
+run
+
+```
 npm install
 ```
 
-### Development
+### Start the mock backend
 
-Start the development server with HMR:
+```
+npm run backend
+```
 
-```bash
+### Start the web app
+
+```
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+## Architecture
 
-## Building for Production
+The plan is to use
 
-Create a production build:
+- React Router 7
+- TypeScript
+- Material UI
+- Mockoon for mocking the backend / REST endpoints with the provided Mockoon environment file.
 
-```bash
-npm run build
-```
+## Encountered problems
 
-## Deployment
+The provied Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
 
-### Docker Deployment
+## REST API
 
-To build and run using Docker:
+## What more could be done
 
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+- Add tests
+-

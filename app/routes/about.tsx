@@ -2,13 +2,6 @@ import { Link } from "react-router";
 import type { Route } from "../+types/root";
 import { Button, Container, Typography } from "@mui/material";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "About page" },
-    { name: "description", content: "Welcome to the About page!" },
-  ];
-}
-
 export default function About() {
   return (
     <Container>

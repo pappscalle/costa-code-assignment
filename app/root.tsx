@@ -8,8 +8,15 @@ import {
 } from "react-router";
 import type { Route } from "./+types/root";
 
-//import "./app.css";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import "./app.css";
+import {
+  Alert,
+  AlertTitle,
+  Container,
+  CssBaseline,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import theme from "~/theme";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
@@ -39,7 +46,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <header>The header</header>
+        <main>{children}</main>
+        <footer>The footer</footer>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -75,14 +84,16 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <Container>
+      <Alert severity="error" variant="filled">
+        <AlertTitle>{message}</AlertTitle>
+        {details}
+        {stack && (
+          <pre>
+            <code>{stack}</code>
+          </pre>
+        )}
+      </Alert>
+    </Container>
   );
 }

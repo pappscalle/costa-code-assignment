@@ -6,7 +6,7 @@ The main objective is to build a web application that consists of three pages:
 
 - A landing page that shows available vehicles
 - An Infomation Overview page that shows detailed information about a vehicle and its active services
-- A Service Overview page that shows a list of all services with details. The list shooule be possible to filter accoding to service status.
+- A Service Overview page that shows a list of all services with details. The list should be possible to filter according to service status.
 
 ## Getting Started
 
@@ -43,7 +43,7 @@ The plan is to use
 
 ## Encountered problems
 
-The provied Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
+The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
 
 ## REST API
 

@@ -1,5 +1,6 @@
 import {
   Link,
+  Outlet,
   useLoaderData,
   type LoaderFunctionArgs,
   type MetaArgs,
@@ -43,18 +44,21 @@ export default function Vehicles() {
   console.log("Vehicles: ", vehicles);
 
   return (
-    <Stack spacing={2}>
-      {vehicles.map(({ id, name }: Vehicle) => (
-        <Card key={id} sx={{ maxWidth: 450 }}>
-          <Link to={`/vehicle/${id}`}>
-            <CardActionArea>
-              <CardContent>
-                {id}: {name}
-              </CardContent>
-            </CardActionArea>
-          </Link>
-        </Card>
-      ))}
-    </Stack>
+    <Container>
+      <Stack spacing={2}>
+        {vehicles.map(({ id, name }: Vehicle) => (
+          <Card key={id} sx={{ maxWidth: 450 }}>
+            <Link to={`/vehicles/${id}`}>
+              <CardActionArea>
+                <CardContent>
+                  {id}: {name}
+                </CardContent>
+              </CardActionArea>
+            </Link>
+          </Card>
+        ))}
+      </Stack>
+      <Outlet />
+    </Container>
   );
 }

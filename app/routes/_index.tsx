@@ -1,11 +1,29 @@
 import {
   Link,
-  Outlet,
+  useLoaderData,
   type LoaderFunctionArgs,
   type MetaArgs,
 } from "react-router";
 
-import { Alert, Button, Container, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useEffect } from "react";
+interface Vehicle {
+  id: number;
+  name?: string;
+}
+
+interface VehicleList {
+  vehicles: Vehicle[];
+}
 
 export function meta({}: MetaArgs) {
   return [
@@ -14,16 +32,36 @@ export function meta({}: MetaArgs) {
   ];
 }
 
-export async function loader({}: LoaderFunctionArgs) {
-  const result = await fetch("https://jsonplaceholder.typicode.com/posts");
-  if (!result.ok) {
-    throw new Response("Failed to load data", { status: result.status });
-  }
-  console.log("Data loaded successfully");
-  return result.json();
-}
-
 export default function Index() {
-  console.log("Home component rendered");
-  return <div>The landing page</div>;
+  return (
+    <Container>
+      <Typography variant="h2" gutterBottom>
+        Welcome to the Costa: Code Assignment!
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quis
+        rerum cum, vel quam tempora iste, impedit fuga, explicabo eveniet
+        nostrum quae obcaecati exercitationem vitae officiis quod saepe quasi
+        tempore.
+      </Typography>
+      <Stack direction="row" spacing={2} marginTop={2}>
+        <Button
+          component={Link}
+          to="/vehicles"
+          variant="contained"
+          color="primary"
+        >
+          List of Vehicles
+        </Button>
+        <Button
+          component={Link}
+          to="/about"
+          variant="contained"
+          color="primary"
+        >
+          About
+        </Button>
+      </Stack>
+    </Container>
+  );
 }

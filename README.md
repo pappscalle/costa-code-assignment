@@ -43,7 +43,8 @@ The plan is to use
 
 ## Encountered problems
 
-The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
+- The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
+  
 
 ## REST API
 

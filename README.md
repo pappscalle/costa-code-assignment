@@ -48,6 +48,11 @@ The plan is to use
 
 ## REST API
 
+REST API endpoints used:
+`/vehicle/list`: List all vehicles. Differs from instructions.
+`/vehicle/info?id=$id`: Get detailed information about a certain vehicle. Differs from instructions.
+`/vehicle/services?id=$id`: Get services connected to a certain vehicle.
+
 ## What more could be done
 
 - Add tests

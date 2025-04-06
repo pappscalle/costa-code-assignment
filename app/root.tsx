@@ -20,6 +20,7 @@ import {
 import theme from "~/theme";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import Header from "./components/Header";
 
 const cache = createCache({ key: "css", prepend: true });
 
@@ -46,9 +47,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <header>The header</header>
-        <Container>{children}</Container>
-        <footer>The footer</footer>
+        <Header />
+        <Container sx={{ marginTop: 4, marginBottom: 8 }}>{children}</Container>
         <ScrollRestoration />
         <Scripts />
       </body>

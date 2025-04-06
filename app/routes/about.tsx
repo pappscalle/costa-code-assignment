@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import type { Route } from "../+types/root";
-import { Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 export default function About() {
   return (
-    <Container>
+    <Box>
       <Typography variant="h2" gutterBottom>
         This is the about page
       </Typography>
@@ -17,6 +17,6 @@ export default function About() {
       <Button component={Link} to="/" variant="contained" color="primary">
         Home
       </Button>
-    </Container>
+    </Box>
   );
 }

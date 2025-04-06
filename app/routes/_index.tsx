@@ -7,6 +7,7 @@ import {
 
 import {
   Alert,
+  Box,
   Button,
   Card,
   CardActionArea,
@@ -34,7 +35,7 @@ export function meta({}: MetaArgs) {
 
 export default function Index() {
   return (
-    <Container>
+    <Box>
       <Typography variant="h2" gutterBottom>
         Welcome to the Costa: Code Assignment!
       </Typography>
@@ -44,24 +45,6 @@ export default function Index() {
         nostrum quae obcaecati exercitationem vitae officiis quod saepe quasi
         tempore.
       </Typography>
-      <Stack direction="row" spacing={2} marginTop={2}>
-        <Button
-          component={Link}
-          to="/vehicles"
-          variant="contained"
-          color="primary"
-        >
-          List of Vehicles
-        </Button>
-        <Button
-          component={Link}
-          to="/about"
-          variant="contained"
-          color="primary"
-        >
-          About
-        </Button>
-      </Stack>
-    </Container>
+    </Box>
   );
 }

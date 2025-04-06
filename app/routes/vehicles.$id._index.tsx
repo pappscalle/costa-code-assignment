@@ -34,14 +34,17 @@ export default function Vehicle() {
 
   return (
     <div>
-      <Typography variant="h5">Vehicle Information</Typography>
-      <InformationTable details={details} />
-
-      <Typography variant="h5">Active Services</Typography>
-      <ServicesTable
-        services={filteredServices}
-        communicationStatus={communicationStatus}
-      />
+      <Stack spacing={2} marginBottom={4}>
+        <Typography variant="h5">Vehicle Information</Typography>
+        <InformationTable details={details} />
+      </Stack>
+      <Stack spacing={2} marginBottom={4}>
+        <Typography variant="h5">Active Services</Typography>
+        <ServicesTable
+          services={filteredServices}
+          communicationStatus={communicationStatus}
+        />
+      </Stack>
 
       <Stack direction="row" spacing={2} marginTop={2}>
         <Button component={Link} to=".." variant="contained" color="primary">

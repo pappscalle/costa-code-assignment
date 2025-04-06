@@ -76,11 +76,13 @@ export default function Vehicle() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
-        Vehicle Information for '{name}'
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        ID: {id}
+      <Typography variant="h2">Vehicle Information for '{name}'</Typography>
+      <Typography
+        variant="h6"
+        sx={{ color: "text.secondary", mb: 1.5 }}
+        gutterBottom
+      >
+        {id}
       </Typography>
       <Outlet context={data} />
     </>

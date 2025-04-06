@@ -10,6 +10,7 @@ import {
 
 import {
   Alert,
+  Box,
   Button,
   Card,
   CardActionArea,
@@ -27,20 +28,28 @@ export default function Vehicles() {
   console.log("Vehicles: ", data);
 
   return (
-    <Container>
+    <Box>
+      <Typography variant="h2" gutterBottom>
+        The list of vehicles
+      </Typography>
       <Stack spacing={2}>
         {data.vehicles.map(({ id, name = "Unknown Vehicle" }: Vehicle) => (
-          <Card key={id} sx={{ maxWidth: 450 }}>
+          <Card key={id}>
             <Link to={`/vehicles/${id}`}>
               <CardActionArea>
                 <CardContent>
-                  {id}: {name}
+                  <Typography variant="h5" component="div">
+                    {name}
+                  </Typography>
+                  <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                    {id}
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Link>
           </Card>
         ))}
       </Stack>
-    </Container>
+    </Box>
   );
 }

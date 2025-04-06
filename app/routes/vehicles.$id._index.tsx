@@ -18,14 +18,14 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import type { LoaderResponse, Service } from "./vehicles.$id";
+import type { DetailsAndServices, Service } from "./vehicles.$id";
 import type { Vehicle } from "./vehicles";
 import Services from "./vehicles.$id.services._index";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";
 
 export default function Vehicle() {
-  const { id, services, details } = useOutletContext<LoaderResponse>();
+  const { id, services, details } = useOutletContext<DetailsAndServices>();
 
   const filteredServices = services.services?.filter(
     (service: Service) => service.status == "ACTIVE"

@@ -10,11 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext, useRouteLoaderData } from "react-router";
-import type { LoaderResponse, Service } from "./vehicles.$id";
+import type { DetailsAndServices, Service } from "./vehicles.$id";
 import ServicesTable from "~/components/ServicesTable";
 
 export default function Services() {
-  const data = useOutletContext<LoaderResponse>();
+  const data = useOutletContext<DetailsAndServices>();
 
   console.log("Services: ", data);
 

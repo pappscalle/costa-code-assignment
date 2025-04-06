@@ -27,7 +27,7 @@ export interface ServiceList {
   services: Service[];
 }
 
-export interface LoaderResponse {
+export interface DetailsAndServices {
   id: string;
   details: VehicleInformation;
   services: ServiceList;
@@ -65,7 +65,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function Vehicle() {
-  const data = useLoaderData<LoaderResponse>();
+  const data = useLoaderData<DetailsAndServices>();
 
   const { id } = data;
   const vehicleList = useOutletContext<VehicleList>();

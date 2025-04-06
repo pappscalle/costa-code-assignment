@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
-export interface Vehicle {
+export interface VehicleInformation {
   msidn: string;
   engineStatus: string;
   brand: string;
@@ -22,7 +22,7 @@ export interface ServiceList {
 
 export interface LoaderResponse {
   id: string;
-  details: Vehicle;
+  details: VehicleInformation;
   services: ServiceList;
 }
 
@@ -41,7 +41,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     });
   }
 
-  const details: Vehicle = await vehicleDetails.json();
+  const details: VehicleInformation = await vehicleDetails.json();
   const services: ServiceList = await vehicleServices.json();
 
   //console.log("Services: ", services.services);
@@ -59,5 +59,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function Vehicle() {
   const data = useLoaderData<LoaderResponse>();
-  return <Outlet context={data} />;
+  return (
+    <>
+      djaslkjdsa kl
+      <Outlet context={data} />
+    </>
+  );
 }

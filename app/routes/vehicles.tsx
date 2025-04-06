@@ -31,5 +31,6 @@ export async function loader({}: LoaderFunctionArgs) {
 
 export default function Vehicles() {
   const data = useLoaderData<VehicleList>();
+
   return <Outlet context={data} />;
 }

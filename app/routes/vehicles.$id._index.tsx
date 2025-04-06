@@ -20,70 +20,28 @@ import {
 } from "@mui/material";
 import type { LoaderResponse, Service } from "./vehicles.$id";
 import type { Vehicle } from "./vehicles";
+import Services from "./vehicles.$id.services._index";
+import ServicesTable from "~/components/ServicesTable";
+import InformationTable from "~/components/InformationTable";
 
 export default function Vehicle() {
   const { id, services, details } = useOutletContext<LoaderResponse>();
 
-  // const { vehicles } = useRouteLoaderData("routes/vehicles");
-  //
-  // const vehicle = vehicles.find((vehicle: Vehicle) => vehicle.id === id);
-  // const name = vehicle?.name || "* UNKNOWN *";
+  const filteredServices = services.services?.filter(
+    (service: Service) => service.status == "ACTIVE"
+  );
+  const communicationStatus = services.communicationStatus;
 
   return (
     <div>
       <Typography variant="h5">Vehicle Information</Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableBody>
-            {/* <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>{name}</TableCell>
-            </TableRow> */}
-            <TableRow>
-              <TableCell>MSIDN</TableCell>
-              <TableCell>{details.msidn}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Engine Status</TableCell>
-              <TableCell>{details.engineStatus}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Brand</TableCell>
-              <TableCell>{details.brand}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Country of Operation</TableCell>
-              <TableCell>{details.countryOfOperation}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Chassis Number</TableCell>
-              <TableCell>{details.chassisNumber}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Cassis Series</TableCell>
-              <TableCell>{details.cassisSeries}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <InformationTable details={details} />
 
       <Typography variant="h5">Active Services</Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableBody>
-            {services.communicationStatus == "ACTIVE" &&
-              services.services
-                .filter((service: Service) => service.status == "ACTIVE")
-                .map((service: Service) => (
-                  <TableRow key={service.serviceName}>
-                    <TableCell>{service.serviceName}</TableCell>
-                    <TableCell>{service.status}</TableCell>
-                    <TableCell>{service.lastUpdate}</TableCell>
-                  </TableRow>
-                ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <ServicesTable
+        services={filteredServices}
+        communicationStatus={communicationStatus}
+      />
 
       <Stack direction="row" spacing={2} marginTop={2}>
         <Button component={Link} to=".." variant="contained" color="primary">

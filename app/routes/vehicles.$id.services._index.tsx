@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Checkbox,
   FormControlLabel,
@@ -12,14 +13,10 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import {
-  Link,
-  useOutletContext,
-  useRouteLoaderData,
-  useSearchParams,
-} from "react-router";
+import { Link, useOutletContext, useSearchParams } from "react-router";
 import type { DetailsAndServices, Service } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
+import { useMemo } from "react";
 
 const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 
@@ -30,40 +27,43 @@ export default function Services() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const params = searchParams.getAll("status");
-  const selectedStatuses = params.length ? params : allStatuses;
+  const selectedStatuses = useMemo(() => {
+    const params = searchParams.getAll("status");
+    return params.length ? params : allStatuses;
+  }, [searchParams]);
 
   console.log("Selected statuses: ", selectedStatuses);
 
   const { services } = data;
 
-  const filteredServices = services.services.filter((service) => {
-    return selectedStatuses.includes(service.status);
-  });
+  const filteredServices = useMemo(() => {
+    return services.services?.filter((service) =>
+      selectedStatuses.includes(service.status)
+    );
+  }, [services, selectedStatuses]);
 
   const communicationStatus = services.communicationStatus;
 
   return (
-    <div>
+    <Box>
       <Typography variant="h5">All Services</Typography>
       <FormGroup row>
         {allStatuses.map((status) => (
-          <FormGroup key={status}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={selectedStatuses.includes(status)}
-                  onChange={(e) => {
-                    const newStatuses = e.target.checked
-                      ? [...selectedStatuses, status]
-                      : selectedStatuses.filter((s) => s !== status);
-                    setSearchParams({ status: newStatuses });
-                  }}
-                />
-              }
-              label={status}
-            />
-          </FormGroup>
+          <FormControlLabel
+            key={status}
+            control={
+              <Checkbox
+                checked={selectedStatuses.includes(status)}
+                onChange={(e) => {
+                  const newStatuses = e.target.checked
+                    ? [...selectedStatuses, status]
+                    : selectedStatuses.filter((s) => s !== status);
+                  setSearchParams({ status: newStatuses });
+                }}
+              />
+            }
+            label={status}
+          />
         ))}
       </FormGroup>
       <ServicesTable
@@ -75,6 +75,6 @@ export default function Services() {
           Back to vehicle Information
         </Button>
       </Stack>
-    </div>
+    </Box>
   );
 }

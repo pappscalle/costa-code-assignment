@@ -30,6 +30,7 @@ export default function Vehicle() {
   const filteredServices = services.services?.filter(
     (service: Service) => service.status == "ACTIVE"
   );
+
   const communicationStatus = services.communicationStatus;
 
   return (

@@ -13,13 +13,10 @@ import type {
 } from "~/types/types";
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const vehicleDetails = await fetch(
-    `http://localhost:1337/vehicle/info?id=${params.id}`
-  );
-
-  const vehicleServices = await fetch(
-    `http://localhost:1337/vehicle/services?id=${params.id}`
-  );
+  const [vehicleDetails, vehicleServices] = await Promise.all([
+    fetch(`http://localhost:1337/vehicle/info?id=${params.id}`),
+    fetch(`http://localhost:1337/vehicle/services?id=${params.id}`),
+  ]);
 
   if (!vehicleDetails.ok || !vehicleServices.ok) {
     throw new Response("Failed to load data", {

@@ -4,34 +4,13 @@ import {
   useOutletContext,
   type LoaderFunctionArgs,
 } from "react-router";
-import type { VehicleList } from "./vehicles";
+import type { VehicleList } from "~/types/types";
 import { Typography } from "@mui/material";
-
-export interface VehicleInformation {
-  msidn: string;
-  engineStatus: string;
-  brand: string;
-  countryOfOperation: string;
-  chassisNumber: string;
-  cassisSeries: string;
-}
-
-export interface Service {
-  serviceName: string;
-  status: string;
-  lastUpdate: string;
-}
-
-export interface ServiceList {
-  communicationStatus: string;
-  services: Service[];
-}
-
-export interface DetailsAndServices {
-  id: string;
-  details: VehicleInformation;
-  services: ServiceList;
-}
+import type {
+  VehicleInformation,
+  ServiceList,
+  DetailsAndServices,
+} from "~/types/types";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const vehicleDetails = await fetch(

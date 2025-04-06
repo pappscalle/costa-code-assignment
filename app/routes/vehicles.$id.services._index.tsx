@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext, useRouteLoaderData } from "react-router";
-import type { DetailsAndServices, Service } from "./vehicles.$id";
+import type { DetailsAndServices, Service } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
 
 export default function Services() {

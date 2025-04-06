@@ -18,8 +18,8 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import type { DetailsAndServices, Service } from "./vehicles.$id";
-import type { Vehicle } from "./vehicles";
+import type { DetailsAndServices, Service } from "~/types/types";
+import type { Vehicle } from "~/types/types";
 import Services from "./vehicles.$id.services._index";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";

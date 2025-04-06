@@ -6,7 +6,7 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import type { VehicleInformation } from "~/routes/vehicles.$id";
+import type { VehicleInformation } from "~/types/types";
 
 export interface InformationTableProps {
   details: VehicleInformation;

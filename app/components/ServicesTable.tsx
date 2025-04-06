@@ -7,7 +7,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import type { Service } from "~/routes/vehicles.$id";
+import type { Service } from "~/types/types";
 
 export interface ServicesTableProps {
   communicationStatus: string;

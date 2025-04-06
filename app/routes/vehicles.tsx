@@ -1,19 +1,15 @@
 import { Container } from "@mui/material";
 import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
-
-export interface Vehicle {
-  id: string;
-  name?: string;
-}
-
-export interface VehicleList {
-  vehicles: Vehicle[];
-}
+import type { VehicleList } from "~/types/types";
 
 export function shouldRevalidate({
   currentUrl,
   nextUrl,
   defaultShouldRevalidate,
+}: {
+  currentUrl: URL;
+  nextUrl: URL;
+  defaultShouldRevalidate: boolean;
 }) {
   return currentUrl.pathname === "/vehicles";
 }

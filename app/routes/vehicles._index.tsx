@@ -20,7 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-import { type Vehicle, type VehicleList } from "./vehicles";
+import { type Vehicle, type VehicleList } from "~/types/types";
 
 export default function Vehicles() {
   const data = useOutletContext<VehicleList>();

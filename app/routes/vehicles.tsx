@@ -1,4 +1,4 @@
-import { Outlet, type LoaderFunctionArgs } from "react-router";
+import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 export interface Vehicle {
   id: number;
@@ -9,6 +9,14 @@ export interface VehicleList {
   vehicles: Vehicle[];
 }
 
+export function shouldRevalidate({
+  currentUrl,
+  nextUrl,
+  defaultShouldRevalidate,
+}) {
+  return currentUrl.pathname === "/vehicles";
+}
+
 export async function loader({}: LoaderFunctionArgs) {
   const result = await fetch("http://localhost:1337/vehicle/list");
   if (!result.ok) {
@@ -17,10 +25,11 @@ export async function loader({}: LoaderFunctionArgs) {
 
   const data: VehicleList = await result.json();
 
-  console.log("Data loaded successfully");
+  console.log("Loaded list of vehicles successfully");
   return data;
 }
 
 export default function Vehicles() {
-  return <Outlet />;
+  const data = useLoaderData<VehicleList>();
+  return <Outlet context={data} />;
 }

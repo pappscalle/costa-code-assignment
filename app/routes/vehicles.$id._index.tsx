@@ -2,6 +2,7 @@ import {
   Link,
   Outlet,
   useLoaderData,
+  useOutletContext,
   useRouteLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
@@ -20,71 +21,13 @@ import {
 import type { LoaderResponse, Service } from "./vehicles.$id";
 import type { Vehicle } from "./vehicles";
 
-// export interface Vehicle {
-//   msidn: string;
-//   engineStatus: string;
-//   brand: string;
-//   countryOfOperation: string;
-//   chassisNumber: string;
-//   cassisSeries: string;
-// }
-
-// export interface Service {
-//   serviceName: string;
-//   status: string;
-//   lastUpdate: string;
-// }
-
-// export interface ServiceList {
-//   communicationStatus: string;
-//   services: Service[];
-// }
-
-// export interface LoaderResponse {
-//   id: string;
-//   details: Vehicle;
-//   services: ServiceList;
-// }
-
-// export async function loader({ params }: LoaderFunctionArgs) {
-//   const vehicleDetails = await fetch(
-//     `http://localhost:1337/vehicle/info?id=${params.id}`
-//   );
-
-//   const vehicleServices = await fetch(
-//     `http://localhost:1337/vehicle/services?id=${params.id}`
-//   );
-
-//   if (!vehicleDetails.ok || !vehicleServices.ok) {
-//     throw new Response("Failed to load data", {
-//       status: 500,
-//     });
-//   }
-
-//   const details: Vehicle = await vehicleDetails.json();
-//   const services: ServiceList = await vehicleServices.json();
-
-//   console.log("Services: ", services.services);
-
-//   const combinedData = {
-//     id: params.id,
-//     details,
-//     services,
-//   };
-//   console.log("Data loaded successfully");
-//   console.log("Vehicle: ", combinedData);
-//   return combinedData;
-// }
-
 export default function Vehicle() {
-  //const { id, details, services } = useLoaderData<LoaderResponse>();
+  const { id, services, details } = useOutletContext<LoaderResponse>();
 
-  const { id, details, services } = useRouteLoaderData("routes/vehicles.$id");
-
-  const { vehicles } = useRouteLoaderData("routes/vehicles");
-
-  const vehicle = vehicles.find((vehicle: Vehicle) => vehicle.id === id);
-  const name = vehicle?.name || "* UNKNOWN *";
+  // const { vehicles } = useRouteLoaderData("routes/vehicles");
+  //
+  // const vehicle = vehicles.find((vehicle: Vehicle) => vehicle.id === id);
+  // const name = vehicle?.name || "* UNKNOWN *";
 
   return (
     <div>
@@ -92,10 +35,10 @@ export default function Vehicle() {
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
-            <TableRow>
+            {/* <TableRow>
               <TableCell>Name</TableCell>
               <TableCell>{name}</TableCell>
-            </TableRow>
+            </TableRow> */}
             <TableRow>
               <TableCell>MSIDN</TableCell>
               <TableCell>{details.msidn}</TableCell>

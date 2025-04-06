@@ -2,6 +2,7 @@ import {
   Link,
   Outlet,
   useLoaderData,
+  useOutletContext,
   useRouteLoaderData,
   type LoaderFunctionArgs,
   type MetaArgs,
@@ -18,33 +19,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-import { type Vehicle } from "./vehicles";
-
-// interface Vehicle {
-//   id: number;
-//   name?: string;
-// }
-
-// interface VehicleList {
-//   vehicles: Vehicle[];
-// }
-
-// export async function loader({}: LoaderFunctionArgs) {
-//   const result = await fetch("http://localhost:1337/vehicle/list");
-//   if (!result.ok) {
-//     throw new Response("Failed to load data", { status: result.status });
-//   }
-
-//   const data: VehicleList = await result.json();
-
-//   console.log("Data loaded successfully");
-//   return data;
-// }
+import { type Vehicle, type VehicleList } from "./vehicles";
 
 export default function Vehicles() {
-  // const { vehicles } = useLoaderData<VehicleList>();
-
-  const data = useRouteLoaderData("routes/vehicles");
+  const data = useOutletContext<VehicleList>();
 
   console.log("Vehiclesasd: ", data);
 

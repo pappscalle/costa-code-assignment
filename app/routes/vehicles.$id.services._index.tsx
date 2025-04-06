@@ -8,11 +8,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { Link, useRouteLoaderData } from "react-router";
-import type { Service } from "./vehicles.$id";
+import { Link, useOutletContext, useRouteLoaderData } from "react-router";
+import type { LoaderResponse, Service } from "./vehicles.$id";
 
 export default function Services() {
-  const { services } = useRouteLoaderData("routes/vehicles.$id");
+  const data = useOutletContext<LoaderResponse>();
+
+  console.log("Services: ", data);
+
+  const { services } = data;
 
   return (
     <div>

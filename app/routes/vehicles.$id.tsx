@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from "react-router";
+import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 export interface Vehicle {
   msidn: string;
@@ -44,18 +44,20 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const details: Vehicle = await vehicleDetails.json();
   const services: ServiceList = await vehicleServices.json();
 
-  console.log("Services: ", services.services);
+  //console.log("Services: ", services.services);
 
   const combinedData = {
     id: params.id,
     details,
     services,
   };
-  console.log("Data loaded successfully");
-  console.log("Vehicle: ", combinedData);
+  console.log("Loaded vehicle details successfully");
+  console.log("Loaded vehicle services successfully");
+  //console.log("Vehicle: ", combinedData);
   return combinedData;
 }
 
 export default function Vehicle() {
-  return <Outlet />;
+  const data = useLoaderData<LoaderResponse>();
+  return <Outlet context={data} />;
 }

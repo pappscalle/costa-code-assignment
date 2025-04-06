@@ -1,5 +1,8 @@
-import { Outlet } from "react-router";
+import { Outlet, useLoaderData, useOutletContext } from "react-router";
+import type { LoaderResponse } from "./vehicles.$id";
 
 export default function Services() {
-  return <Outlet />;
+  const data = useOutletContext<LoaderResponse>();
+  console.log("Services1: ", data);
+  return <Outlet context={data} />;
 }

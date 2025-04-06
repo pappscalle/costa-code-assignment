@@ -1,4 +1,11 @@
-import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import {
+  Outlet,
+  useLoaderData,
+  useOutletContext,
+  type LoaderFunctionArgs,
+} from "react-router";
+import type { VehicleList } from "./vehicles";
+import { Typography } from "@mui/material";
 
 export interface VehicleInformation {
   msidn: string;
@@ -59,9 +66,22 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function Vehicle() {
   const data = useLoaderData<LoaderResponse>();
+
+  const { id } = data;
+  const vehicleList = useOutletContext<VehicleList>();
+
+  const vehicle = vehicleList.vehicles.find((vehicle) => vehicle.id === id);
+
+  const name = vehicle?.name || "Unknown Vehicle";
+
   return (
     <>
-      djaslkjdsa kl
+      <Typography variant="h4" gutterBottom>
+        Vehicle Information for '{name}'
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+        ID: {id}
+      </Typography>
       <Outlet context={data} />
     </>
   );

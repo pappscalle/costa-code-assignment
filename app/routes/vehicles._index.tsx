@@ -24,12 +24,12 @@ import { type Vehicle, type VehicleList } from "./vehicles";
 export default function Vehicles() {
   const data = useOutletContext<VehicleList>();
 
-  console.log("Vehiclesasd: ", data);
+  console.log("Vehicles: ", data);
 
   return (
     <Container>
       <Stack spacing={2}>
-        {data.vehicles.map(({ id, name = "* Unknown *" }: Vehicle) => (
+        {data.vehicles.map(({ id, name = "Unknown Vehicle" }: Vehicle) => (
           <Card key={id} sx={{ maxWidth: 450 }}>
             <Link to={`/vehicles/${id}`}>
               <CardActionArea>

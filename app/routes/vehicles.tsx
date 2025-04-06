@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
 
 export interface Vehicle {
-  id: number;
+  id: string;
   name?: string;
 }
 

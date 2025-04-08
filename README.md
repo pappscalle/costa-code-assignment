@@ -32,20 +32,33 @@ npm run backend
 npm run dev
 ```
 
-## Architecture
+## Architecture and design decisions
 
 The plan is to use
 
-- React Router 7
-- TypeScript
-- Material UI
-- Mockoon for mocking the backend / REST endpoints with the provided Mockoon environment file.
+- React Router 7 in framework mode with file based routing, using SSR.
+- TypeScript. Default for React Router 7. 
+- Material UI. This one is a bit tricky. I have used MUI before, but MUI is not supported out-of-the-box for RR7. Need some manual work.
+   ```
+     const cache = createCache({ key: "css", prepend: true });
+     <CacheProvider value={cache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Outlet />
+        </ThemeProvider>
+      </CacheProvider>
+   ```
+   `<CacheProvider>` fixes issues with SSR in MUI. 
+ 
+- Mockoon for mocking the backend / REST endpoints with the provided Mockoon environment file as per instructions.
 
 ## Encountered problems
 
 - The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
+- REST API not exactly as defined in the instructions (se notes below)
+- Vehicle statuses are pretty slow to load. Need to make UI responsive while loading and / or cache the data once it is loaded.
+- React Routes makes a bit of "magic" behind the scenes with the loaders in nested routes. 
   
-
 ## REST API
 
 REST API endpoints used:
@@ -56,7 +69,12 @@ REST API endpoints used:
 
 `/vehicle/services?id=$id`: Get services connected to a certain vehicle.
 
+
+
+
 ## What more could be done
 
 - Add tests
--
+- Add proper logging
+- Extract React components out of the route files to keep them cleaner.
+- Extract data loading into their own services/utils.

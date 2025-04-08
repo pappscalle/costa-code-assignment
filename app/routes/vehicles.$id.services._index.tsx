@@ -4,24 +4,30 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  Paper,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext, useSearchParams } from "react-router";
-import type { DetailsAndServices, Service, ServiceList } from "~/types/types";
+import type { ServiceList } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
 const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 
 export default function Services() {
-  const services = useOutletContext<ServiceList>();
+  console.log("1. Component Render");
+
+  const outletServices = useOutletContext<ServiceList>();
+  console.log("2. Got outlet context");
+
+  const servicesRef = useRef<ServiceList | null>(null);
+
+  if (!servicesRef.current) {
+    console.log("3. Caching outlet services");
+    servicesRef.current = outletServices;
+  }
+
+  const cachedServices = servicesRef.current;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -31,12 +37,14 @@ export default function Services() {
   }, [searchParams]);
 
   const filteredServices = useMemo(() => {
-    return services.services?.filter((service) =>
+    return cachedServices?.services?.filter((service) =>
       selectedStatuses.includes(service.status)
     );
-  }, [services, selectedStatuses]);
+  }, [cachedServices, selectedStatuses]);
 
-  const communicationStatus = services.communicationStatus;
+  if (!cachedServices) return <div>Loading...</div>; // fallback
+
+  const communicationStatus = cachedServices.communicationStatus;
 
   return (
     <Box>

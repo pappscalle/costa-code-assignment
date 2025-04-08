@@ -25,9 +25,17 @@ import type {
 import { Suspense } from "react";
 import type { Route } from "../+types/root";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  console.log("In the Loading vehicle details loader");
+export function shouldRevalidate({
+  currentUrl,
+  nextUrl,
+}: {
+  currentUrl: URL;
+  nextUrl: URL;
+}) {
+  return currentUrl.pathname !== nextUrl.pathname;
+}
 
+export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.id;
   if (!id) {
     throw new Response("Missing vehicle ID", { status: 400 });

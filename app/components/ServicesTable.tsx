@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import type { Service } from "~/types/types";
+import { formatDate } from "~/utils/utils";
 
 export interface ServicesTableProps {
   communicationStatus: string;
@@ -28,7 +29,7 @@ export default function ServicesTable({
                 <TableRow key={service.serviceName}>
                   <TableCell>{service.serviceName}</TableCell>
                   <TableCell>{service.status}</TableCell>
-                  <TableCell>{service.lastUpdate}</TableCell>
+                  <TableCell>{formatDate(service.lastUpdate)}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

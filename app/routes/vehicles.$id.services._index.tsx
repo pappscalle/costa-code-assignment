@@ -23,16 +23,12 @@ const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 export default function Services() {
   const services = useOutletContext<ServiceList>();
 
-  console.log("Services: ", services);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const selectedStatuses = useMemo(() => {
     const params = searchParams.getAll("status");
     return params.length ? params : allStatuses;
   }, [searchParams]);
-
-  console.log("Selected statuses: ", selectedStatuses);
 
   const filteredServices = useMemo(() => {
     return services.services?.filter((service) =>

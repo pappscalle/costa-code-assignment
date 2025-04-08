@@ -25,8 +25,6 @@ import { type Vehicle, type VehicleList } from "~/types/types";
 export default function Vehicles() {
   const data = useRouteLoaderData<VehicleList>("routes/vehicles");
 
-  console.log("Vehicles: ", data);
-
   return (
     <Box>
       <Typography variant="h2" gutterBottom>

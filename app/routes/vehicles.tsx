@@ -15,6 +15,8 @@ export function shouldRevalidate({
 }
 
 export async function loader({}: LoaderFunctionArgs) {
+  console.log("In the List of vehicles loader");
+
   const result = await fetch("http://localhost:1337/vehicle/list");
   if (!result.ok) {
     throw new Response("Failed to load data", { status: result.status });
@@ -22,7 +24,6 @@ export async function loader({}: LoaderFunctionArgs) {
 
   const data: VehicleList = await result.json();
 
-  console.log("Loaded list of vehicles successfully");
   return data;
 }
 

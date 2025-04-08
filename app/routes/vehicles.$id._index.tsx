@@ -1,38 +1,13 @@
-import {
-  Await,
-  Link,
-  Outlet,
-  useLoaderData,
-  useOutletContext,
-  useRouteLoaderData,
-  type LoaderFunctionArgs,
-} from "react-router";
+import { Await, Link, useRouteLoaderData } from "react-router";
 
-import {
-  Button,
-  CircularProgress,
-  Paper,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import type {
-  DetailsAndServices,
-  Service,
-  ServiceList,
-  VehicleInformation,
-} from "~/types/types";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
+import type { Service, ServiceList, VehicleInformation } from "~/types/types";
 import type { Vehicle } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";
 import { Suspense } from "react";
 
 export default function Vehicle() {
-  //const { id, services, details } = useOutletContext<DetailsAndServices>();
   const { id, services, details } = useRouteLoaderData("routes/vehicles.$id");
 
   const filteredServices = services.services?.filter(

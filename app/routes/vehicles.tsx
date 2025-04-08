@@ -1,20 +1,8 @@
-import { Container } from "@mui/material";
-import { Outlet, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { Outlet, type LoaderFunctionArgs } from "react-router";
 import type { VehicleList } from "~/types/types";
 
-export function shouldRevalidate({
-  currentUrl,
-  nextUrl,
-  defaultShouldRevalidate,
-}: {
-  currentUrl: URL;
-  nextUrl: URL;
-  defaultShouldRevalidate: boolean;
-}) {
-  return currentUrl.pathname === "/vehicles";
-}
-
 export async function loader({}: LoaderFunctionArgs) {
+  console.log("Loading vehicles...");
   const result = await fetch("http://localhost:1337/vehicle/list");
 
   if (!result.ok) {

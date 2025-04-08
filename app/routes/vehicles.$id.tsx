@@ -1,29 +1,12 @@
 import {
-  Await,
-  isRouteErrorResponse,
-  Link,
   Outlet,
   useLoaderData,
-  useOutletContext,
   useRouteLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
 import type { VehicleList } from "~/types/types";
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@mui/material";
-import type {
-  VehicleInformation,
-  ServiceList,
-  DetailsAndServices,
-} from "~/types/types";
-import { Suspense } from "react";
-import type { Route } from "../+types/root";
+import { Typography } from "@mui/material";
+import type { VehicleInformation, ServiceList } from "~/types/types";
 
 export function shouldRevalidate({
   currentUrl,
@@ -36,6 +19,8 @@ export function shouldRevalidate({
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
+  console.log("Loading vehicle details...");
+
   const id = params.id;
   if (!id) {
     throw new Response("Missing vehicle ID", { status: 400 });

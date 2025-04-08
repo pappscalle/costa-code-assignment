@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import type { Route } from "../+types/root";
 import { Box, Button, Container, Typography } from "@mui/material";
 
 export default function About() {

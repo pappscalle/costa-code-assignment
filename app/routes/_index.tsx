@@ -17,14 +17,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-interface Vehicle {
-  id: number;
-  name?: string;
-}
-
-interface VehicleList {
-  vehicles: Vehicle[];
-}
 
 export function meta({}: MetaArgs) {
   return [

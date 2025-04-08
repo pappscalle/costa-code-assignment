@@ -19,7 +19,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useEffect } from "react";
 import { type Vehicle, type VehicleList } from "~/types/types";
 
 export default function Vehicles() {

@@ -15,19 +15,7 @@ import { useMemo, useRef } from "react";
 const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 
 export default function Services() {
-  console.log("1. Component Render");
-
   const outletServices = useOutletContext<ServiceList>();
-  console.log("2. Got outlet context");
-
-  const servicesRef = useRef<ServiceList | null>(null);
-
-  if (!servicesRef.current) {
-    console.log("3. Caching outlet services");
-    servicesRef.current = outletServices;
-  }
-
-  const cachedServices = servicesRef.current;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -37,14 +25,12 @@ export default function Services() {
   }, [searchParams]);
 
   const filteredServices = useMemo(() => {
-    return cachedServices?.services?.filter((service) =>
+    return outletServices?.services?.filter((service) =>
       selectedStatuses.includes(service.status)
     );
-  }, [cachedServices, selectedStatuses]);
+  }, [outletServices, selectedStatuses]);
 
-  if (!cachedServices) return <div>Loading...</div>; // fallback
-
-  const communicationStatus = cachedServices.communicationStatus;
+  const communicationStatus = outletServices.communicationStatus;
 
   return (
     <Box>

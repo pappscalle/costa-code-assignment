@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router";
-import ElectricCarIcon from "@mui/icons-material/ElectricCar";
+import LocalShipping from "@mui/icons-material/LocalShipping";
 
 export default function Header() {
   return (
@@ -17,7 +17,7 @@ export default function Header() {
         <Toolbar disableGutters>
           <Link to="/">
             <Stack direction="row" spacing={2} alignItems="center" mr={4}>
-              <ElectricCarIcon />
+              <LocalShipping />
               <Typography
                 variant="h5"
                 noWrap

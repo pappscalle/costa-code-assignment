@@ -1,3 +1,12 @@
+export interface Vehicle {
+  id: string;
+  name?: string;
+}
+
+export interface VehicleList {
+  vehicles: Vehicle[];
+}
+
 export interface VehicleInformation {
   msidn: string;
   engineStatus: string;
@@ -22,13 +31,4 @@ export interface DetailsAndServices {
   id: string;
   details: VehicleInformation;
   services: ServiceList;
-}
-
-export interface Vehicle {
-  id: string;
-  name?: string;
-}
-
-export interface VehicleList {
-  vehicles: Vehicle[];
 }

@@ -14,16 +14,16 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext, useSearchParams } from "react-router";
-import type { DetailsAndServices, Service } from "~/types/types";
+import type { DetailsAndServices, Service, ServiceList } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
 import { useMemo } from "react";
 
 const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 
 export default function Services() {
-  const data = useOutletContext<DetailsAndServices>();
+  const services = useOutletContext<ServiceList>();
 
-  console.log("Services: ", data);
+  console.log("Services: ", services);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -33,8 +33,6 @@ export default function Services() {
   }, [searchParams]);
 
   console.log("Selected statuses: ", selectedStatuses);
-
-  const { services } = data;
 
   const filteredServices = useMemo(() => {
     return services.services?.filter((service) =>

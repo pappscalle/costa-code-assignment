@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -12,6 +13,7 @@ import "./app.css";
 import {
   Alert,
   AlertTitle,
+  Button,
   Container,
   CssBaseline,
   ThemeProvider,
@@ -85,7 +87,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <Container>
-      <Alert severity="error" variant="filled">
+      <Alert severity="error" variant="filled" sx={{ marginBottom: 2 }}>
         <AlertTitle>{message}</AlertTitle>
         {details}
         {stack && (
@@ -94,6 +96,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           </pre>
         )}
       </Alert>
+      <Button component={Link} to="/" variant="contained" color="primary">
+        Home
+      </Button>
     </Container>
   );
 }

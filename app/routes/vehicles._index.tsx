@@ -23,7 +23,7 @@ import { useEffect } from "react";
 import { type Vehicle, type VehicleList } from "~/types/types";
 
 export default function Vehicles() {
-  const data = useOutletContext<VehicleList>();
+  const data = useRouteLoaderData<VehicleList>("routes/vehicles");
 
   console.log("Vehicles: ", data);
 
@@ -33,7 +33,7 @@ export default function Vehicles() {
         The list of vehicles
       </Typography>
       <Stack spacing={2}>
-        {data.vehicles.map(({ id, name = "Unknown Vehicle" }: Vehicle) => (
+        {data?.vehicles.map(({ id, name = "Unknown Vehicle" }: Vehicle) => (
           <Card key={id}>
             <Link to={`/vehicles/${id}`}>
               <CardActionArea>

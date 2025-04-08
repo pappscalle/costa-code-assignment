@@ -1,4 +1,5 @@
 import {
+  Await,
   Link,
   Outlet,
   useLoaderData,
@@ -9,6 +10,7 @@ import {
 
 import {
   Button,
+  CircularProgress,
   Paper,
   Stack,
   Table,
@@ -18,14 +20,20 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import type { DetailsAndServices, Service } from "~/types/types";
+import type {
+  DetailsAndServices,
+  Service,
+  ServiceList,
+  VehicleInformation,
+} from "~/types/types";
 import type { Vehicle } from "~/types/types";
-import Services from "./vehicles.$id.services._index";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";
+import { Suspense } from "react";
 
 export default function Vehicle() {
-  const { id, services, details } = useOutletContext<DetailsAndServices>();
+  //const { id, services, details } = useOutletContext<DetailsAndServices>();
+  const { id, services, details } = useRouteLoaderData("routes/vehicles.$id");
 
   const filteredServices = services.services?.filter(
     (service: Service) => service.status == "ACTIVE"
@@ -37,14 +45,34 @@ export default function Vehicle() {
     <div>
       <Stack spacing={2} marginBottom={4}>
         <Typography variant="h5">Vehicle Information</Typography>
-        <InformationTable details={details} />
+
+        <Suspense fallback={<CircularProgress />}>
+          <Await resolve={details}>
+            {(resolvedDetails: VehicleInformation) => (
+              <InformationTable details={resolvedDetails} />
+            )}
+          </Await>
+        </Suspense>
       </Stack>
+
       <Stack spacing={2} marginBottom={4}>
         <Typography variant="h5">Active Services</Typography>
-        <ServicesTable
-          services={filteredServices}
-          communicationStatus={communicationStatus}
-        />
+
+        <Suspense fallback={<CircularProgress />}>
+          <Await resolve={services}>
+            {(resolvedServices: ServiceList) => {
+              const filteredServices = resolvedServices.services?.filter(
+                (service) => service.status === "ACTIVE"
+              );
+              return (
+                <ServicesTable
+                  services={filteredServices}
+                  communicationStatus={resolvedServices.communicationStatus}
+                />
+              );
+            }}
+          </Await>
+        </Suspense>
       </Stack>
 
       <Stack direction="row" spacing={2} marginTop={2}>

@@ -1,18 +1,29 @@
 import {
   Await,
+  isRouteErrorResponse,
+  Link,
   Outlet,
   useLoaderData,
   useOutletContext,
+  useRouteLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
 import type { VehicleList } from "~/types/types";
-import { Alert, CircularProgress, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  CircularProgress,
+  Container,
+  Typography,
+} from "@mui/material";
 import type {
   VehicleInformation,
   ServiceList,
   DetailsAndServices,
 } from "~/types/types";
 import { Suspense } from "react";
+import type { Route } from "../+types/root";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const id = params.id;
@@ -39,14 +50,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
     return res.json() as Promise<ServiceList>;
   });
 
-  return { id, combined: Promise.all([detailsPromise, servicesPromise]) };
+  return { id, details: detailsPromise, services: servicesPromise };
 }
 
 export default function Vehicle() {
-  const { id, combined } = useLoaderData<typeof loader>();
-  const { vehicles } = useOutletContext<VehicleList>();
-  const vehicle = vehicles.find((v) => v.id === id);
-  const name = vehicle?.name || "Unknown Vehicle";
+  const { id, details, services } = useLoaderData<typeof loader>();
+  const data = useRouteLoaderData<VehicleList>("routes/vehicles");
+  const name = getVehicleName(data);
 
   return (
     <>
@@ -59,16 +69,12 @@ export default function Vehicle() {
         {id}
       </Typography>
 
-      <Suspense fallback={<CircularProgress />}>
-        <Await
-          resolve={combined}
-          errorElement={<Alert severity="error">Failed to load data</Alert>}
-        >
-          {([details, services]: [VehicleInformation, ServiceList]) => (
-            <Outlet context={{ id, details, services }} />
-          )}
-        </Await>
-      </Suspense>
+      <Outlet />
     </>
   );
+
+  function getVehicleName(data: VehicleList | undefined) {
+    const vehicle = data?.vehicles.find((v) => v.id === id);
+    return vehicle?.name || "Unknown Vehicle";
+  }
 }

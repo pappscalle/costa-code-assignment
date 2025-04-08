@@ -36,7 +36,7 @@ The plan is to use
 
 - React Router 7 in framework mode with file based routing, using SSR.
 - TypeScript. Default for React Router 7. 
-- Material UI. This one is a bit tricky. I have used MUI before, but MUI is not supported out-of-the-box for RR7. Need some manual work.
+- Material UI. This one is a bit tricky. MUI is not supported out-of-the-box for RR7. Need some manual work.
    ```
      const cache = createCache({ key: "css", prepend: true });
      <CacheProvider value={cache}>

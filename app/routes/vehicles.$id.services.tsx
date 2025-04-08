@@ -1,7 +1,9 @@
 import { CircularProgress } from "@mui/material";
 import { Suspense, useState } from "react";
-import { Await, Outlet, useRouteLoaderData } from "react-router";
+import { Await, Outlet, useAsyncError, useRouteLoaderData } from "react-router";
+import ErrorAlert from "~/components/ErrorAlert";
 import type { DetailsAndServices, ServiceList } from "~/types/types";
+
 export default function Services() {
   const { services } = useRouteLoaderData("routes/vehicles.$id");
 
@@ -11,7 +13,10 @@ export default function Services() {
 
   return (
     <Suspense fallback={<CircularProgress />}>
-      <Await resolve={services}>
+      <Await
+        errorElement={<ErrorAlert message="Error loading services" />}
+        resolve={services}
+      >
         {(resolvedServices) => {
           if (!cachedServices) {
             setCachedServices(resolvedServices);

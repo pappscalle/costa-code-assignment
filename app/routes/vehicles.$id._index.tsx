@@ -1,10 +1,17 @@
-import { Await, Link, useRouteLoaderData } from "react-router";
+import { Await, Link, useAsyncError, useRouteLoaderData } from "react-router";
 
-import { Button, CircularProgress, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import type { Service, ServiceList, VehicleInformation } from "~/types/types";
 import type { Vehicle } from "~/types/types";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";
+import ErrorAlert from "~/components/ErrorAlert";
 import { Suspense } from "react";
 
 export default function Vehicle() {
@@ -22,7 +29,12 @@ export default function Vehicle() {
         <Typography variant="h5">Vehicle Information</Typography>
 
         <Suspense fallback={<CircularProgress />}>
-          <Await resolve={details}>
+          <Await
+            errorElement={
+              <ErrorAlert message="Error loading vehicle details" />
+            }
+            resolve={details}
+          >
             {(resolvedDetails: VehicleInformation) => (
               <InformationTable details={resolvedDetails} />
             )}
@@ -34,7 +46,10 @@ export default function Vehicle() {
         <Typography variant="h5">Active Services</Typography>
 
         <Suspense fallback={<CircularProgress />}>
-          <Await resolve={services}>
+          <Await
+            errorElement={<ErrorAlert message="Error loading services" />}
+            resolve={services}
+          >
             {(resolvedServices: ServiceList) => {
               const filteredServices = resolvedServices.services?.filter(
                 (service) => service.status === "ACTIVE"

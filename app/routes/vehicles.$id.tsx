@@ -30,10 +30,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     `http://localhost:1337/vehicle/info?id=${id}`
   ).then(async (res) => {
     if (!res.ok) {
-      if (res.status === 401) {
-        throw new Error("Unauthorized to access this vehicle");
-      }
-      throw new Error("Failed to load vehicle details");
+      throw new Error(res.statusText);
     }
     return res.json() as Promise<VehicleInformation>;
   });
@@ -41,8 +38,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const servicesPromise = fetch(
     `http://localhost:1337/vehicle/services?id=${id}`
   ).then(async (res) => {
-    if (!res.ok) throw new Error("Failed to load vehicle services");
-    return res.json() as Promise<ServiceList>;
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+    return res.json() as Promise<VehicleInformation>;
   });
 
   return { id, details: detailsPromise, services: servicesPromise };

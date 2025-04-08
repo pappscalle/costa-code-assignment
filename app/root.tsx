@@ -17,7 +17,6 @@ import {
   Container,
   CssBaseline,
   ThemeProvider,
-  Typography,
 } from "@mui/material";
 import theme from "~/theme";
 import createCache from "@emotion/cache";
@@ -62,7 +61,7 @@ export default function App() {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
-        <CssBaseline /> {/* Provides global MUI styles */}
+        <CssBaseline />
         <Outlet />
       </ThemeProvider>
     </CacheProvider>

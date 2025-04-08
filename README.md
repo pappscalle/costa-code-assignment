@@ -14,8 +14,6 @@ Checkout this repo
 
 ### Install dependencies
 
-run
-
 ```
 npm install
 ```

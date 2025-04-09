@@ -52,7 +52,7 @@ The plan is to use
 
 ## Encountered problems
 
-- The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it.
+- The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it (ie delete the header), and let Mockoon re-generate it.
 - REST API not exactly as defined in the instructions (se notes below)
 - Vehicle statuses are pretty slow to load. Need to make UI responsive while loading and / or cache the data once it is loaded.
 - React Routes makes a bit of "magic" behind the scenes with the loaders in nested routes. 

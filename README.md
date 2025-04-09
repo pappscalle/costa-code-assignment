@@ -77,3 +77,4 @@ REST API endpoints used:
 - Extract React components out of the route files to keep them cleaner.
 - Extract data loading into their own services/utils.
 - Each added feature should be created in their own branches, and squashed into the main branch
+- Filtering on the services page could be a bit better perhaps...

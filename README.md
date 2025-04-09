@@ -55,6 +55,7 @@ The plan is to use
 - The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it (ie delete the header), and let Mockoon re-generate it.
 - REST API not exactly as defined in the instructions (se notes below)
 - Vehicle statuses are pretty slow to load. Need to make UI responsive while loading and / or cache the data once it is loaded.
+- One of API responses is unauthoirized and one times out, needs to be handled.
 - React Routes makes a bit of "magic" behind the scenes with the loaders in nested routes. 
   
 ## REST API
@@ -67,8 +68,14 @@ REST API endpoints used:
 
 `/vehicle/services?id=$id`: Get services connected to a certain vehicle.
 
+## Implemented features
 
-
+- Webapp with React Router 7 as a framework, and MUI for UI components.
+- File based routing.
+- Using nested routes for layouts and data loading.
+- Loading vehicles information and services in the background, showing a spinner to keep the UI responsive.
+- Custom error component if loading fails for some reason (eg unauthorized and timeouts).
+- Filter parameters on the URL. Makes it eg possible to bookmark filtered results.
 
 ## What more could be done
 
@@ -76,5 +83,5 @@ REST API endpoints used:
 - Add proper logging
 - Extract React components out of the route files to keep them cleaner.
 - Extract data loading into their own services/utils.
-- Each added feature should be created in their own branches, and squashed into the main branch
 - Filtering on the services page could be a bit better perhaps...
+- Each added feature should be created in their own branches, and squashed into the main branch

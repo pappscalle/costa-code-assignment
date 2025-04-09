@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 export default function About() {
   return (

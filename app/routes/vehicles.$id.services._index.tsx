@@ -10,7 +10,7 @@ import {
 import { Link, useOutletContext, useSearchParams } from "react-router";
 import type { ServiceList } from "~/types";
 import ServicesTable from "~/components/ServicesTable";
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 
 const allStatuses = ["ACTIVE", "DEACTIVATED", "ERROR"];
 

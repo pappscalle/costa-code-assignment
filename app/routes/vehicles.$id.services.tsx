@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import { Suspense, useState } from "react";
-import { Await, Outlet, useAsyncError, useRouteLoaderData } from "react-router";
+import { Await, Outlet, useRouteLoaderData } from "react-router";
 import ErrorAlert from "~/components/ErrorAlert";
 import type { DetailsAndServices, ServiceList } from "~/types";
 

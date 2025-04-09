@@ -1,21 +1,6 @@
-import {
-  Link,
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type MetaArgs,
-} from "react-router";
+import { type MetaArgs } from "react-router";
 
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  Container,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useEffect } from "react";
 
 export function meta({}: MetaArgs) {

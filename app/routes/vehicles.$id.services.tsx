@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { Suspense, useState } from "react";
 import { Await, Outlet, useAsyncError, useRouteLoaderData } from "react-router";
 import ErrorAlert from "~/components/ErrorAlert";
-import type { DetailsAndServices, ServiceList } from "~/types/types";
+import type { DetailsAndServices, ServiceList } from "~/types";
 
 export default function Services() {
   const { services } = useRouteLoaderData("routes/vehicles.$id");

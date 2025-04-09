@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext, useSearchParams } from "react-router";
-import type { ServiceList } from "~/types/types";
+import type { ServiceList } from "~/types";
 import ServicesTable from "~/components/ServicesTable";
 import { useMemo, useRef } from "react";
 

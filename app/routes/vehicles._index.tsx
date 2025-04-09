@@ -19,7 +19,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { type Vehicle, type VehicleList } from "~/types/types";
+import { type Vehicle, type VehicleList } from "~/types";
 
 export default function Vehicles() {
   const data = useRouteLoaderData<VehicleList>("routes/vehicles");

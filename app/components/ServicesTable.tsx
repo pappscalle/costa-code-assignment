@@ -7,7 +7,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import type { Service } from "~/types/types";
+import type { Service } from "~/types";
 import { formatDate } from "~/utils/utils";
 
 export interface ServicesTableProps {

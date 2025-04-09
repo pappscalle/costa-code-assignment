@@ -7,8 +7,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import type { Service, ServiceList, VehicleInformation } from "~/types/types";
-import type { Vehicle } from "~/types/types";
+import type { Service, ServiceList, VehicleInformation } from "~/types";
+import type { Vehicle } from "~/types";
 import ServicesTable from "~/components/ServicesTable";
 import InformationTable from "~/components/InformationTable";
 import ErrorAlert from "~/components/ErrorAlert";

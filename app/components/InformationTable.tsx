@@ -6,7 +6,7 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import type { VehicleInformation } from "~/types/types";
+import type { VehicleInformation } from "~/types";
 
 export interface InformationTableProps {
   details: VehicleInformation;

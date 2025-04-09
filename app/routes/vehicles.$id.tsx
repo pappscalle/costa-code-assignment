@@ -4,9 +4,9 @@ import {
   useRouteLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
-import type { VehicleList } from "~/types/types";
+import type { VehicleList } from "~/types";
 import { Typography } from "@mui/material";
-import type { VehicleInformation, ServiceList } from "~/types/types";
+import type { VehicleInformation, ServiceList } from "~/types";
 
 export function shouldRevalidate({
   currentUrl,

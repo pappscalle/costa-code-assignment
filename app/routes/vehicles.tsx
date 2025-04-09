@@ -1,5 +1,5 @@
 import { Outlet, type LoaderFunctionArgs } from "react-router";
-import type { VehicleList } from "~/types/types";
+import type { VehicleList } from "~/types";
 
 export async function loader({}: LoaderFunctionArgs) {
   console.log("Loading vehicles...");

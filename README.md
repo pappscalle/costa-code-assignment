@@ -55,7 +55,7 @@ The plan is to use
 - The provided Mockoon environment was not compatible with the latest version of Mockoon. Needed to manually edit it (ie delete the header), and let Mockoon re-generate it.
 - REST API not exactly as defined in the instructions (se notes below)
 - Vehicle statuses are pretty slow to load. Need to make UI responsive while loading and / or cache the data once it is loaded.
-- One of API responses is unauthoirized and one times out, needs to be handled.
+- One of API responses is unauthorized and one times out, needs to be handled.
 - React Routes makes a bit of "magic" behind the scenes with the loaders in nested routes. 
   
 ## REST API
